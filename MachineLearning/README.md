@@ -172,3 +172,69 @@
 
 - **Informe o valor total investido mensalmente**  
   *(coluna: `Amount_invested_monthly` - valor investido mensalmente)*
+
+
+## 3. Treinamento do Modelo
+
+### Algoritmo Escolhido
+- **Random Forest Classifier**
+
+### Justificativa
+- Escolhido por sua robustez, capacidade de lidar com dados numéricos e categóricos, boa performance em classificações multiclasse e interpretabilidade por meio de importâncias de atributos.
+- 
+- ### Resultados do Modelo Random Forest
+
+Após o treinamento com otimização via validação cruzada (GridSearchCV), o modelo Random Forest obteve os seguintes resultados no conjunto de validação:
+
+- **Melhores hiperparâmetros encontrados**:
+  - `max_depth`: None  
+  - `min_samples_leaf`: 1  
+  - `n_estimators`: 200  
+
+- **Tempo de treinamento**: 328.86 segundos
+
+- **Desempenho no conjunto de validação**:
+  - **Acurácia**: `96,86%`
+  - **F1-Score Ponderado**: `96,86%`
+
+- **Relatório de Classificação**:
+
+| Classe    | Precisão | Revocação | F1-Score | Suporte |
+|-----------|----------|-----------|----------|---------|
+| Bad       | 0.98     | 0.99      | 0.98     | 1765    |
+| Good      | 0.98     | 0.94      | 0.96     | 2995    |
+| Standard  | 0.96     | 0.98      | 0.97     | 4709    |
+| **Média Macro** | **0.97** | **0.97** | **0.97** | **9469** |
+| **Média Ponderada** | **0.97** | **0.97** | **0.97** | **9469** |
+
+> 🟢 O modelo apresentou excelente desempenho em todas as classes, com acurácia geral de aproximadamente **97%**.
+
+
+### Seleção de Atributos (Features Utilizadas no Treinamento)
+As seguintes variáveis foram mantidas após o pré-processamento para treinamento:
+
+- `Age` (Idade)  
+- `Monthly_Inhand_Salary` (Salário mensal líquido)  
+- `Num_Bank_Accounts` (Número de contas bancárias)  
+- `Num_Credit_Card` (Número de cartões de crédito)  
+- `Num_of_Loan` (Número de empréstimos ativos)  
+- `Delay_from_due_date` (Dias de atraso em relação à data de vencimento)  
+- `Num_of_Delayed_Payment` (Número de pagamentos atrasados)  
+- `Outstanding_Debt` (Dívida pendente)  
+- `Payment_of_Min_Amount` (Indicador se o pagamento mínimo foi realizado)  
+- `Total_EMI_per_month` (Total de parcelas mensais - EMI)  
+- `Amount_invested_monthly` (Valor investido mensalmente)
+
+> **Nota:** Algumas colunas com dados técnicos ou sensíveis foram removidas para aproximar o modelo de um cenário realista de uso com dados informados por usuários.
+
+### Divisão dos Dados
+- Conjunto de treino (`train.csv`) e teste (`test.csv`) foram carregados separadamente.
+- Os dados foram balanceados e padronizados onde necessário.
+
+### Treinamento e Avaliação
+- O modelo **RandomForestClassifier** foi treinado utilizando as 11 variáveis mantidas.
+- Avaliação com métricas como **acurácia**, **matriz de confusão**, **classification report** e **importância das variáveis**.
+- A análise da **feature importance** indicou quais variáveis mais impactam a predição do `Credit_Mix`.
+
+### Armazenamento
+- O modelo final foi salvo como: `random_forest_creditmix_model.pkl` (no Colab/Drive).
