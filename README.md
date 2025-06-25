@@ -18,7 +18,7 @@ Aplicativo mobile que realiza uma análise de crédito com base nas respostas de
 
 ---
 
-- [VIDEO PITCH ON YOUTUBE](https://youtu.be/ANy5j2yYMoE)
+- [VIDEO PITCH ON YOUTUBE](https://youtu.be/ZhKnlGcdRXU)
 
 - [VIDEO DEMO DO APLICATIVO](Imagens/Video%20Demo/ScoreView.mp4)
 
